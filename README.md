@@ -4,8 +4,11 @@ Este projeto consiste numa aplicação web interativa desenvolvida com o framewo
 
 ## Equipe
 Emmanuel Kleber Ramos Pessoa
+
 Ingrid Guedes Rachid
+
 Leonardo Vinicius Bujes da Silva
+
 Thiago Jorge da Silva
 
 ## Estrutura do Site e Conteúdo de Cada Seção
