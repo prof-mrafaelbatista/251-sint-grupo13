@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Tratamento de Exceções - Python{% endblock %}
+
+{% block content %}
+<section id="excecoes-content">
+    <h2>Tratamento de Exceções</h2>
+    <h3>Conceito</h3>
+    <p>Exceções são erros que ocorrem durante a execução de um programa. Python usa um mecanismo de tratamento de exceções com os blocos <code>try</code>, <code>except</code>, <code>else</code> e <code>finally</code> para lidar com esses erros de forma controlada, evitando que o programa pare abruptamente.</p>
+    <ul>
+        <li><strong><code>try</code>:</strong> O bloco de código que pode potencialmente levantar uma exceção é colocado dentro do bloco <code>try</code>.</li>
+        <li><strong><code>except</code>:</strong> Se uma exceção ocorrer no bloco <code>try</code>, o Python procura um bloco <code>except</code> correspondente que possa tratar essa exceção específica. Pode-se ter múltiplos blocos <code>except</code> para diferentes tipos de exceções.</li>
+        <li><strong><code>else</code>:</strong> (Opcional) O bloco <code>else</code> é executado se nenhuma exceção ocorrer no bloco <code>try</code>.</li>
+        <li><strong><code>finally</code>:</strong> (Opcional) O bloco <code>finally</code> é sempre executado, independentemente de uma exceção ter ocorrido ou não. É útil para liberar recursos, como fechar arquivos.</li>
+    </ul>
+
+    <h3>Aplicação</h3>
+    <p>O tratamento de exceções é crucial para criar programas robustos e confiáveis. Ele permite:</p>
+    <ul>
+        <li>Prevenir que o programa "quebre" inesperadamente.</li>
+        <li>Fornecer mensagens de erro amigáveis ao usuário.</li>
+        <li>Lidar com situações imprevistas, como entrada de dados inválida, arquivos não encontrados, problemas de rede, etc.</li>
+        <li>Garantir que operações críticas (como fechar conexões de banco de dados ou arquivos) sejam sempre realizadas, mesmo que ocorram erros.</li>
+    </ul>
+
+    <h3>Exemplo de Código</h3>
+    <pre><code class="language-python">
+<span class="token comment"># Exemplo 1: Lidando com divisão por zero e entrada inválida</span>
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+    numerador <span class="token operator">=</span> <span class="token function">int</span><span class="token punctuation">(</span><span class="token function">input</span><span class="token punctuation">(</span><span class="token string">"Digite o numerador: "</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    denominador <span class="token operator">=</span> <span class="token function">int</span><span class="token punctuation">(</span><span class="token function">input</span><span class="token punctuation">(</span><span class="token string">"Digite o denominador: "</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    resultado <span class="token operator">=</span> numerador <span class="token operator">/</span> denominador
+<span class="token keyword">except</span> <span class="token builtin">ValueError</span><span class="token punctuation">:</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Erro: Entrada inválida. Por favor, digite números inteiros."</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span> <span class="token builtin">ZeroDivisionError</span><span class="token punctuation">:</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Erro: Não é possível dividir por zero."</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">f"O resultado da divisão é: {resultado}"</span><span class="token punctuation">)</span>
+<span class="token keyword">finally</span><span class="token punctuation">:</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Bloco finally executado (operação de limpeza, por exemplo)."</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Exemplo 2: Lidando com arquivo não encontrado</span>
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+    <span class="token keyword">with</span> <span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"arquivo_inexistente.txt"</span><span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> arquivo<span class="token punctuation">:</span>
+        conteudo <span class="token operator">=</span> arquivo<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Conteúdo do arquivo:"</span><span class="token punctuation">,</span> conteudo<span class="token punctuation">)</span>
+<span class="token keyword">except</span> <span class="token builtin">FileNotFoundError</span><span class="token punctuation">:</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Erro: O arquivo não foi encontrado."</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span> <span class="token builtin">Exception</span> <span class="token keyword">as</span> e<span class="token punctuation">:</span> <span class="token comment"># Captura genérica para outras exceções</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">f"Ocorreu um erro inesperado: {e}"</span><span class="token punctuation">)</span>
+    </code></pre>
+</section>
+{% endblock %}

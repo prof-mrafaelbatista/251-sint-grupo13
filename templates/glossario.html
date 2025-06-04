@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+
+{% block title %}Glossário - Fundamentos de Python{% endblock %}
+
+{% block head %}
+    <style>
+        /* Estilos adicionais para botões e formulário da página de glossário.
+           Muitos destes podem já estar no style.css principal ou podem ser movidos para lá. */
+        .glossary-actions {
+            margin-left: 10px;
+            white-space: nowrap; 
+        }
+        .glossary-actions form {
+            display: inline; 
+        }
+        .glossary-actions .btn {
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9em;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        .btn-edit {
+            background-color: #f0ad4e;
+            color: white;
+            border: 1px solid #eea236;
+        }
+        .btn-edit:hover {
+            background-color: #ec971f;
+        }
+        .btn-delete {
+            background-color: #d9534f;
+            color: white;
+            border: 1px solid #d43f3a;
+        }
+        .btn-delete:hover {
+            background-color: #c9302c;
+        }
+        .add-term-form {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .add-term-form h3 {
+            margin-top: 0;
+            color: #2c3e50;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .add-term-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        .add-term-form input[type="text"],
+        .add-term-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .add-term-form textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        .add-term-form button[type="submit"] {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .add-term-form button[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+
+        /* Estilos para flash messages (se não estiverem globalmente definidos em style.css) */
+        .flash-messages {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        .flash-messages li {
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .flash-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .flash-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .flash-warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+         .flash-info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<section id="glossario-content">
+    <h2>Glossário de Termos</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flash-messages">
+            {% for category, message in messages %}
+                <li class="flash-{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <div class="add-term-form">
+        <h3>Adicionar Novo Termo</h3>
+        <form action="{{ url_for('adicionar_termo') }}" method="POST">
+            <div>
+                <label for="termo">Termo:</label>
+                <input type="text" id="termo" name="termo" required>
+            </div>
+            <div>
+                <label for="definicao">Definição:</label>
+                <textarea id="definicao" name="definicao" required></textarea>
+            </div>
+            <button type="submit">Adicionar Termo</button>
+        </form>
+    </div>
+
+    {% if termos %}
+        <dl>
+            {% for item in termos %}
+                <div class="glossary-term">
+                    <dt>
+                        {{ item.termo }}
+                        <span class="glossary-actions">
+                            <a href="{{ url_for('alterar_termo', termo_id=item.id) }}" class="btn btn-edit">Alterar</a>
+                            <form action="{{ url_for('eliminar_termo', termo_id=item.id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja eliminar este termo?');">
+                                <button type="submit" class="btn btn-delete">Eliminar</button>
+                            </form>
+                        </span>
+                    </dt>
+                    <dd>{{ item.definicao }}</dd>
+                </div>
+            {% else %}
+                <p>Nenhum termo encontrado no glossário.</p>
+            {% endfor %}
+        </dl>
+    {% else %}
+        <p>Nenhum termo encontrado no glossário ou o arquivo não pôde ser carregado. Verifique se o arquivo <code>bd_glossario.csv</code> existe na raiz do projeto e está formatado corretamente.</p>
+        <p>Se o arquivo não existir, ele será criado automaticamente ao adicionar o primeiro termo.</p>
+    {% endif %}
+</section>
+{% endblock %}

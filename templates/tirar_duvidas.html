@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}Tirar Dúvidas - Fundamentos de Python{% endblock %}
+
+{% block head %}
+    <style>
+        /* Estilos específicos para a página "Tirar Dúvidas" */
+        .qa-form {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .qa-form h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .qa-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .qa-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            min-height: 100px;
+            resize: vertical;
+        }
+        .qa-form button[type="submit"] {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .qa-form button[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+        .gemini-response {
+            background-color: #e9f7fd;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        .gemini-response h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        /* Estilos para flash messages (se não estiverem globalmente definidos em style.css) */
+        .flash-messages {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        .flash-messages li {
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .flash-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .flash-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .flash-warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+         .flash-info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<section id="tirar-duvidas-content">
+    <h2>Tire Suas Dúvidas sobre Programação</h2>
+    <p>Faça uma pergunta sobre Python, Flask ou conceitos de programação e tentaremos responder com a ajuda da IA (simulação).</p>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flash-messages">
+            {% for category, message in messages %}
+                <li class="flash-{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <div class="qa-form">
+        <form method="POST" action="{{ url_for('tirar_duvidas') }}">
+            <div>
+                <label for="pergunta">Sua Pergunta:</label>
+                <textarea id="pergunta" name="pergunta" rows="4" required>{{ pergunta_anterior if pergunta_anterior }}</textarea>
+            </div>
+            <button type="submit">Enviar Pergunta</button>
+        </form>
+    </div>
+
+    {% if resposta %}
+    <div class="gemini-response">
+        <h4>Resposta:</h4>
+        <p>{{ resposta }}</p>
+    </div>
+    {% endif %}
+
+</section>
+{% endblock %}

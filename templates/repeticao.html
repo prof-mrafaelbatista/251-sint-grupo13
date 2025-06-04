@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Estruturas de Repetição - Python{% endblock %}
+
+{% block content %}
+<section id="repeticao-content">
+    <h2>Estruturas de Repetição</h2>
+    <h3>Conceito</h3>
+    <p>Estruturas de repetição (ou laços) permitem executar um bloco de código múltiplas vezes. Python oferece principalmente os laços <code>for</code> (para iterar sobre sequências) e <code>while</code> (para repetir enquanto uma condição for verdadeira).</p>
+    <h3>Aplicação</h3>
+    <p>Utilizadas para processar itens em uma lista, ler linhas de um arquivo, repetir uma ação até que uma condição seja satisfeita, ou realizar cálculos que exigem múltiplas iterações.</p>
+    <h3>Exemplo de Código</h3>
+    <pre><code class="language-python">
+<span class="token comment"># Exemplo com for</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Contagem com for:"</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token function">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># De 1 a 5</span>
+    <span class="token function">print</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+
+<span class="token comment"># Exemplo com while</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"\nContagem com while:"</span><span class="token punctuation">)</span>
+contador <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">while</span> contador <span class="token operator">&lt;=</span> <span class="token number">5</span><span class="token punctuation">:</span>
+    <span class="token function">print</span><span class="token punctuation">(</span>contador<span class="token punctuation">)</span>
+    contador <span class="token operator">+=</span> <span class="token number">1</span>
+
+<span class="token comment"># Saída esperada:</span>
+<span class="token comment"># Contagem com for:</span>
+<span class="token comment"># 1</span>
+<span class="token comment"># 2</span>
+<span class="token comment"># 3</span>
+<span class="token comment"># 4</span>
+<span class="token comment"># 5</span>
+<span class="token comment">#</span>
+<span class="token comment"># Contagem com while:</span>
+<span class="token comment"># 1</span>
+<span class="token comment"># 2</span>
+<span class="token comment"># 3</span>
+<span class="token comment"># 4</span>
+<span class="token comment"># 5</span>
+    </code></pre>
+</section>
+{% endblock %}

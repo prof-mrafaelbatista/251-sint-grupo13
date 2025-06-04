@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Vetores e Matrizes - Python{% endblock %}
+
+{% block content %}
+<section id="vetores-content">
+    <h2>Vetores e Matrizes</h2>
+    <h3>Conceito</h3>
+    <p>Em Python, "vetores" são comumente representados por listas (<code>list</code>), que são coleções ordenadas e mutáveis de itens. "Matrizes" (arrays bidimensionais) podem ser implementadas como listas de listas. Para operações numéricas mais avançadas, bibliotecas como NumPy são frequentemente usadas, oferecendo arrays mais eficientes.</p>
+    <h3>Aplicação</h3>
+    <p>Vetores são usados para armazenar coleções de dados, como uma lista de nomes, temperaturas, ou notas. Matrizes são úteis para representar dados tabulares, como planilhas, imagens (pixels), ou sistemas de equações lineares.</p>
+    <h3>Exemplo de Código</h3>
+    <pre><code class="language-python">
+<span class="token comment"># Vetor (Lista em Python)</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Vetor (Lista):"</span><span class="token punctuation">)</span>
+numeros <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">40</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">]</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string">f"Primeiro elemento: {numeros[0]}"</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string">f"Último elemento: {numeros[-1]}"</span><span class="token punctuation">)</span>
+numeros<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token number">60</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string">f"Lista após adicionar 60: {numeros}"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Matriz (Lista de Listas em Python)</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"\nMatriz (Lista de Listas):"</span><span class="token punctuation">)</span>
+matriz <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">]</span>
+<span class="token punctuation">]</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string">f"Elemento na linha 1, coluna 2: {matriz[0][1]}"</span><span class="token punctuation">)</span> <span class="token comment"># Linhas e colunas começam em 0</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Imprimindo a matriz:"</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> linha <span class="token keyword">in</span> matriz<span class="token punctuation">:</span>
+    <span class="token function">print</span><span class="token punctuation">(</span>linha<span class="token punctuation">)</span>
+
+<span class="token comment"># Saída esperada:</span>
+<span class="token comment"># Vetor (Lista):</span>
+<span class="token comment"># Primeiro elemento: 10</span>
+<span class="token comment"># Último elemento: 50</span>
+<span class="token comment"># Lista após adicionar 60: [10, 20, 30, 40, 50, 60]</span>
+<span class="token comment">#</span>
+<span class="token comment"># Matriz (Lista de Listas):</span>
+<span class="token comment"># Elemento na linha 1, coluna 2: 2</span>
+<span class="token comment"># Imprimindo a matriz:</span>
+<span class="token comment"># [1, 2, 3]</span>
+<span class="token comment"># [4, 5, 6]</span>
+<span class="token comment"># [7, 8, 9]</span>
+    </code></pre>
+</section>
+{% endblock %}

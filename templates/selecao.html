@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Estruturas de Seleção - Python{% endblock %}
+
+{% block content %}
+<section id="selecao-content">
+    <h2>Estruturas de Seleção</h2>
+    <h3>Conceito</h3>
+    <p>As estruturas de seleção (ou condicionais) permitem que um programa execute diferentes blocos de código dependendo se uma determinada condição é verdadeira ou falsa. As principais em Python são <code>if</code>, <code>elif</code> (else if) e <code>else</code>.</p>
+    <h3>Aplicação</h3>
+    <p>São usadas para tomar decisões no código. Por exemplo, verificar se um usuário tem permissão para acessar um recurso, determinar se um número é positivo ou negativo, ou reagir a diferentes entradas do usuário.</p>
+    <h3>Exemplo de Código</h3>
+    <pre><code class="language-python">
+idade <span class="token operator">=</span> <span class="token number">18</span>
+permissao_pais <span class="token operator">=</span> <span class="token boolean">False</span>
+
+<span class="token keyword">if</span> idade <span class="token operator">&gt;=</span> <span class="token number">18</span><span class="token punctuation">:</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Pode entrar na festa."</span><span class="token punctuation">)</span>
+<span class="token keyword">elif</span> idade <span class="token operator">&lt;</span> <span class="token number">18</span> <span class="token keyword">and</span> permissao_pais<span class="token punctuation">:</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Pode entrar na festa com permissão dos pais."</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Não pode entrar na festa."</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Saída esperada: Pode entrar na festa.</span>
+    </code></pre>
+</section>
+{% endblock %}
