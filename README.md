@@ -2,6 +2,12 @@
 
 Este projeto consiste numa aplicação web interativa desenvolvida com o framework Flask. O objetivo é criar um site informativo sobre os fundamentos da programação em Python, incluindo uma funcionalidade de perguntas e respostas integrada com a API do Gemini (simulada neste exemplo) e um dicionário interativo de termos de programação com persistência em arquivo de texto (CSV).
 
+## Equipe
+Emmanuel Kleber Ramos Pessoa
+Ingrid Guedes Rachid
+Leonardo Vinicius Bujes da Silva
+Thiago Jorge da Silva
+
 ## Estrutura do Site e Conteúdo de Cada Seção
 
 O site está organizado da seguinte forma:
